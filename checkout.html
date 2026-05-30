@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ECOSAK — Checkout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--sand:#f4ede1;--cream:#fbf6ee;--ink:#2a2622;--muted:#897f70;--line:#e0d6c5;--terra:#c0603f;--shadow:0 18px 50px -22px rgba(60,44,28,.4)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--sand);color:var(--ink);font-family:'Jost',sans-serif;font-weight:300;line-height:1.65}
+  h1,h2{font-family:'Cormorant Garamond',serif;font-weight:500}
+  a{color:inherit}
+  .ticker{background:var(--ink);color:var(--sand);text-align:center;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;padding:9px 16px}
+  header{border-bottom:1px solid var(--line);background:rgba(244,237,225,.9)}
+  .nav{max-width:1180px;margin:0 auto;padding:18px 28px;display:flex;justify-content:space-between;align-items:center}
+  .brand{font-family:'Cormorant Garamond',serif;font-size:1.8rem;letter-spacing:.28em;text-transform:uppercase;text-decoration:none}
+  .brand b{color:var(--terra);font-weight:600}
+  .wrap{max-width:640px;margin:50px auto 80px;padding:0 28px}
+  .wrap h1{font-size:clamp(2rem,4vw,2.8rem);text-align:center;margin-bottom:6px}
+  .sub{text-align:center;color:var(--muted);margin-bottom:34px;font-size:.95rem}
+  .card{background:var(--cream);border:1px solid var(--line);border-radius:6px;padding:26px;box-shadow:var(--shadow)}
+  .line{display:flex;gap:18px;align-items:center;padding-bottom:22px;border-bottom:1px solid var(--line)}
+  .line img{width:96px;height:96px;object-fit:cover;border-radius:4px;border:1px solid var(--line)}
+  .line .meta{flex:1}
+  .line .meta h2{font-size:1.4rem;line-height:1.1}
+  .line .meta small{color:var(--muted)}
+  .line .amt{font-size:1.1rem;color:var(--terra)}
+  .totals{padding-top:18px;font-size:.98rem}
+  .totals .row{display:flex;justify-content:space-between;margin-bottom:8px;color:var(--muted)}
+  .totals .row.grand{color:var(--ink);font-size:1.2rem;margin-top:10px;padding-top:12px;border-top:1px solid var(--line)}
+  .pay{display:block;width:100%;text-align:center;text-decoration:none;background:var(--ink);color:var(--sand);padding:18px;margin-top:22px;font-size:.86rem;letter-spacing:.18em;text-transform:uppercase;border-radius:3px;transition:background .25s}
+  .pay:hover{background:var(--terra)}
+  .note{margin-top:14px;font-size:.8rem;color:var(--muted);text-align:center;line-height:1.5}
+  .setup{background:#fff4e6;border:1px solid #e9c79a;border-radius:6px;padding:16px 18px;margin-top:24px;font-size:.84rem;color:#7a5a2e;line-height:1.55}
+  .setup b{color:#6a4a1e}
+  .back{display:inline-block;margin-top:26px;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;color:var(--muted)}
+  footer{background:var(--ink);color:#9b8f7a;text-align:center;padding:34px 28px;font-size:.78rem;letter-spacing:.08em}
+  .dataerr{background:#fff4e6;border:1px solid #e9c79a;border-radius:6px;color:#7a5a2e;padding:20px 24px}
+</style>
+</head>
+<body>
+<div class="ticker">Secure checkout · Powered by Square</div>
+<header><div class="nav"><a href="index.html" class="brand">Eco<b>sak</b></a>
+  <a href="index.html#shop" style="font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none">Continue shopping &rarr;</a></div></header>
+
+<section class="wrap">
+  <h1>Your Order</h1>
+  <div class="sub">Review your tote, then pay securely through Square.</div>
+  <div id="box"></div>
+  <a class="back" href="index.html#shop">&larr; Back to shop</a>
+</section>
+
+<footer>© 2026 <span id="brand-copy">ECOSAK</span> · Payments processed securely by Square</footer>
+
+<script src="data.js"></script>
+<script>
+(function(){
+  var box=document.getElementById('box');
+  if(!window.SHOP){box.innerHTML='<div class="dataerr">Could not load <b>data.js</b>. Make sure it sits in the same folder as this page.</div>';return;}
+  var config=window.SHOP.config, bags=window.SHOP.bags, cur=config.currency||'$';
+  function photo(b,i){return "images/"+b.folder+"/"+b.photos[i||0];}
+  function money(n){return cur+Number(n).toFixed(2);}
+  document.getElementById('brand-copy').textContent=config.brand;
+
+  var params=new URLSearchParams(location.search);
+  var want=params.get('item');
+  var p=null; for(var i=0;i<bags.length;i++){ if(bags[i].id===want){p=bags[i];break;} }
+  if(!p){ for(var j=0;j<bags.length;j++){ if(bags[j].id===config.featured){p=bags[j];break;} } }
+  if(!p) p=bags[0];
+  var qty=parseInt(params.get('qty'),10); if(!qty||qty<1) qty=1;
+  var sub=p.price*qty;
+  document.title=config.brand+' — Checkout · '+p.name;
+
+  var setup = p.square ? '' :
+    '<div class="setup"><b>Setup needed for this bag:</b> in your Square Dashboard go to '+
+    '<b>Online Checkout &rarr; Payment Links &rarr; Create a link &rarr; Collect a payment</b>, '+
+    'set the name and price, copy the link, and paste it into the <b>square</b> field for "'+p.name+'" in <b>data.js</b>.</div>';
+
+  box.innerHTML=
+    '<div class="card">'+
+      '<div class="line"><img src="'+photo(p,0)+'" alt="'+p.name+'">'+
+        '<div class="meta"><h2>'+p.name+'</h2><small>Qty: '+qty+'</small></div>'+
+        '<div class="amt">'+money(sub)+'</div></div>'+
+      '<div class="totals">'+
+        '<div class="row"><span>Subtotal</span><span>'+money(sub)+'</span></div>'+
+        '<div class="row"><span>Shipping</span><span>Calculated by Square</span></div>'+
+        '<div class="row grand"><span>Total</span><span>'+money(sub)+'</span></div>'+
+      '</div>'+
+      '<a class="pay" id="pay" href="#">Pay securely with Square</a>'+
+      '<div class="note">You\u2019ll be taken to Square\u2019s secure checkout to pay with a card, Apple Pay, Google Pay, or Cash App Pay.</div>'+
+      setup+
+    '</div>';
+
+  var pay=document.getElementById('pay');
+  if(p.square){ pay.href=p.square; }
+  else { pay.addEventListener('click',function(e){e.preventDefault();
+    alert('Add this bag\u2019s Square Payment Link in data.js (the "square" field for '+p.name+').');}); }
+})();
+</script>
+</body>
+</html>

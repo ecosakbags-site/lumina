@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ECOSAK — Product</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--sand:#f4ede1;--cream:#fbf6ee;--ink:#2a2622;--muted:#897f70;--line:#e0d6c5;--terra:#c0603f;--leaf:#5d7058;--shadow:0 18px 50px -22px rgba(60,44,28,.4)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--sand);color:var(--ink);font-family:'Jost',sans-serif;font-weight:300;line-height:1.65}
+  h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:500}
+  a{color:inherit}
+  .ticker{background:var(--ink);color:var(--sand);text-align:center;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;padding:9px 16px}
+  header{position:sticky;top:0;z-index:40;background:rgba(244,237,225,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav{max-width:1240px;margin:0 auto;padding:18px 28px;display:flex;align-items:center;justify-content:space-between}
+  .brand{font-family:'Cormorant Garamond',serif;font-size:1.8rem;letter-spacing:.28em;text-transform:uppercase;text-decoration:none}
+  .brand b{color:var(--terra);font-weight:600}
+  .nav-links{display:flex;gap:30px;list-style:none}
+  .nav-links a{text-decoration:none;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase}
+  .crumb{max-width:1180px;margin:24px auto 0;padding:0 28px;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .crumb a{text-decoration:none}
+  .wrap{max-width:1180px;margin:24px auto 70px;padding:0 28px;display:grid;grid-template-columns:1fr 1fr;gap:56px}
+  .gallery .main{aspect-ratio:1;background:var(--cream);border:1px solid var(--line);border-radius:5px;overflow:hidden;box-shadow:var(--shadow)}
+  .gallery .main img{width:100%;height:100%;object-fit:cover}
+  .thumbs{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:12px}
+  .thumbs button{padding:0;border:1px solid var(--line);background:var(--cream);border-radius:4px;overflow:hidden;cursor:pointer;aspect-ratio:1}
+  .thumbs button.active{border-color:var(--terra);outline:1px solid var(--terra)}
+  .thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+  .info h1{font-size:clamp(2.2rem,4vw,3.2rem);line-height:1.05;margin-bottom:10px}
+  .info .price{font-size:1.5rem;color:var(--terra);margin-bottom:8px}
+  .stars{color:var(--terra);letter-spacing:2px;font-size:.9rem;margin-bottom:22px}
+  .info p.lead{color:#5b4f3e;font-size:1.05rem;margin-bottom:24px}
+  .qty{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+  .qty button{width:40px;height:40px;border:1px solid var(--ink);background:none;font-size:1.1rem;cursor:pointer;border-radius:3px}
+  .qty span{min-width:28px;text-align:center;font-size:1.05rem}
+  .buy{display:block;width:100%;text-align:center;text-decoration:none;background:var(--ink);color:var(--sand);padding:17px;font-size:.84rem;letter-spacing:.18em;text-transform:uppercase;border:none;cursor:pointer;border-radius:3px;transition:background .25s}
+  .buy:hover{background:var(--terra)}
+  .trust{margin-top:14px;font-size:.8rem;color:var(--muted);text-align:center}
+  .details{margin-top:34px;border-top:1px solid var(--line)}
+  .details details{border-bottom:1px solid var(--line);padding:16px 2px}
+  .details summary{cursor:pointer;list-style:none;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;display:flex;justify-content:space-between}
+  .details summary::-webkit-details-marker{display:none}
+  .details summary::after{content:"+";color:var(--terra)}
+  .details details[open] summary::after{content:"\2013"}
+  .details p,.details li{color:var(--muted);font-size:.95rem;margin-top:12px}
+  .details ul{margin-top:6px;padding-left:18px}
+  footer{background:var(--ink);color:#cabfac;padding:50px 28px 36px;text-align:center;margin-top:40px}
+  footer .brand{display:inline-block;color:var(--sand);margin-bottom:12px}
+  footer p{color:#9b8f7a;font-size:.88rem;margin-bottom:6px}
+  .copy{margin-top:22px;font-size:.72rem;color:#776c59;letter-spacing:.1em}
+  .dataerr{max-width:760px;margin:60px auto;padding:20px 24px;background:#fff4e6;border:1px solid #e9c79a;border-radius:6px;color:#7a5a2e}
+  @media(max-width:820px){.wrap{grid-template-columns:1fr;gap:28px}.nav-links{display:none}}
+</style>
+</head>
+<body>
+<div class="ticker" id="ticker">Each tote handwoven &amp; one of a kind</div>
+<header>
+  <nav class="nav">
+    <a href="index.html" class="brand">Eco<b>sak</b></a>
+    <ul class="nav-links">
+      <li><a href="index.html#shop">Shop</a></li>
+      <li><a href="product.html">Featured</a></li>
+      <li><a href="index.html#story">Our Story</a></li>
+    </ul>
+    <a href="index.html#shop" style="font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none">Bags &rarr;</a>
+  </nav>
+</header>
+
+<div class="crumb"><a href="index.html">Home</a> / <a href="index.html#shop">Shop</a> / <span id="crumb-name">Tote</span></div>
+
+<section class="wrap" id="wrap">
+  <div class="gallery">
+    <div class="main"><img id="p-img" src="" alt=""></div>
+    <div class="thumbs" id="thumbs"></div>
+  </div>
+  <div class="info">
+    <h1 id="p-name">Tote</h1>
+    <div class="price" id="p-price">$0</div>
+    <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span style="color:var(--muted);font-size:.8rem;letter-spacing:.05em">(handmade · one of a kind)</span></div>
+    <p class="lead" id="p-lead"></p>
+    <div class="qty"><button onclick="dec()">&minus;</button><span id="qty">1</span><button onclick="inc()">+</button></div>
+    <a class="buy" id="buy" href="#">Buy Now</a>
+    <div class="trust">Secure checkout via Square · Apple Pay, Google Pay &amp; cards accepted</div>
+    <div class="details">
+      <details open><summary>Description</summary><p id="p-desc"></p></details>
+      <details><summary>Details &amp; Materials</summary>
+        <ul>
+          <li>Handwoven from 100% recycled plastic cord</li>
+          <li>Water-resistant and easy to wipe clean</li>
+          <li>Braided handles; reinforced base</li>
+          <li>Each is handmade, so sizes vary slightly</li>
+          <li>One of a kind — the exact weave shown is the one you receive</li>
+        </ul>
+      </details>
+      <details><summary>Care</summary><p>Wipe with a damp cloth and mild soap. Air dry. Avoid prolonged direct heat.</p></details>
+      <details><summary>Shipping &amp; Returns</summary><p id="p-ship">Ships within 2–4 business days.</p></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a href="index.html" class="brand">Eco<b>sak</b></a>
+  <p>Handwoven totes from recycled plastic.</p>
+  <div class="copy">© 2026 <span id="brand-copy">ECOSAK</span>. All rights reserved.</div>
+</footer>
+
+<script src="data.js"></script>
+<script>
+(function(){
+  if(!window.SHOP){document.getElementById('wrap').innerHTML=
+    '<div class="dataerr">Could not load <b>data.js</b>. Make sure data.js sits in the same folder as this page.</div>';return;}
+  var config=window.SHOP.config, bags=window.SHOP.bags;
+  var cur=config.currency||'$';
+  function photo(b,i){return "images/"+b.folder+"/"+b.photos[i];}
+  function money(n){return cur+Number(n).toFixed(2);}
+
+  var want=new URLSearchParams(location.search).get('item');
+  var p=null;
+  for(var i=0;i<bags.length;i++){ if(bags[i].id===want){p=bags[i];break;} }
+  if(!p){ for(var j=0;j<bags.length;j++){ if(bags[j].id===config.featured){p=bags[j];break;} } }
+  if(!p) p=bags[0];
+
+  document.getElementById('brand-copy').textContent=config.brand;
+  document.getElementById('p-img').src=photo(p,0);
+  document.getElementById('p-img').alt=p.name;
+  document.getElementById('p-name').textContent=p.name;
+  document.getElementById('crumb-name').textContent=p.name;
+  document.getElementById('p-price').textContent=money(p.price);
+  document.getElementById('p-lead').textContent=p.blurb||'';
+  document.getElementById('p-desc').textContent=p.description||'';
+  document.getElementById('p-ship').textContent='Ships within 2–4 business days. Free U.S. shipping on orders over '+cur+config.freeShipOver+'.';
+  document.title=config.brand+' — '+p.name;
+
+  // thumbnails (show each photo that loads)
+  var thumbs=document.getElementById('thumbs'), main=document.getElementById('p-img');
+  p.photos.forEach(function(fname,idx){
+    var b=document.createElement('button');
+    if(idx===0) b.className='active';
+    b.innerHTML='<img src="'+photo(p,idx)+'" alt="'+p.name+' view '+(idx+1)+'">';
+    b.onclick=function(){ main.src=photo(p,idx);
+      Array.prototype.forEach.call(thumbs.children,function(c){c.className='';}); b.className='active'; };
+    thumbs.appendChild(b);
+  });
+
+  var qty=1;
+  function refresh(){ document.getElementById('qty').textContent=qty;
+    document.getElementById('buy').href='checkout.html?item='+p.id+'&qty='+qty; }
+  window.inc=function(){qty++;refresh();};
+  window.dec=function(){if(qty>1)qty--;refresh();};
+  refresh();
+})();
+</script>
+</body>
+</html>
