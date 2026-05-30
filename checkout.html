@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ECOSAK — Checkout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--sand:#f4ede1;--cream:#fbf6ee;--ink:#2a2622;--muted:#897f70;--line:#e0d6c5;--terra:#c0603f;--shadow:0 18px 50px -22px rgba(60,44,28,.4)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--sand);color:var(--ink);font-family:'Jost',sans-serif;font-weight:300;line-height:1.65}
+  h1,h2{font-family:'Cormorant Garamond',serif;font-weight:500}
+  a{color:inherit}
+  .ticker{background:var(--ink);color:var(--sand);text-align:center;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;padding:9px 16px}
+  header{border-bottom:1px solid var(--line);background:rgba(244,237,225,.9)}
+  .nav{max-width:1180px;margin:0 auto;padding:18px 28px;display:flex;justify-content:space-between;align-items:center}
+  .brand{font-family:'Cormorant Garamond',serif;font-size:1.8rem;letter-spacing:.28em;text-transform:uppercase;text-decoration:none}
+  .brand b{color:var(--terra);font-weight:600}
+  .wrap{max-width:640px;margin:50px auto 80px;padding:0 28px}
+  .wrap h1{font-size:clamp(2rem,4vw,2.8rem);text-align:center;margin-bottom:6px}
+  .sub{text-align:center;color:var(--muted);margin-bottom:34px;font-size:.95rem}
+  .card{background:var(--cream);border:1px solid var(--line);border-radius:6px;padding:26px;box-shadow:var(--shadow)}
+  .line{display:flex;gap:18px;align-items:center;padding-bottom:22px;border-bottom:1px solid var(--line)}
+  .line img{width:96px;height:96px;object-fit:cover;border-radius:4px;border:1px solid var(--line)}
+  .line .meta{flex:1}
+  .line .meta h2{font-size:1.4rem;line-height:1.1}
+  .line .meta small{color:var(--muted)}
+  .line .amt{font-size:1.1rem;color:var(--terra)}
+  .totals{padding-top:18px;font-size:.98rem}
+  .totals .row{display:flex;justify-content:space-between;margin-bottom:8px;color:var(--muted)}
+  .totals .row.grand{color:var(--ink);font-size:1.2rem;margin-top:10px;padding-top:12px;border-top:1px solid var(--line)}
+  .pay{display:block;width:100%;text-align:center;text-decoration:none;background:var(--ink);color:var(--sand);padding:18px;margin-top:22px;font-size:.86rem;letter-spacing:.18em;text-transform:uppercase;border-radius:3px;transition:background .25s}
+  .pay:hover{background:var(--terra)}
+  .note{margin-top:14px;font-size:.8rem;color:var(--muted);text-align:center;line-height:1.5}
+  .setup{background:#fff4e6;border:1px solid #e9c79a;border-radius:6px;padding:16px 18px;margin-top:24px;font-size:.84rem;color:#7a5a2e;line-height:1.55}
+  .setup b{color:#6a4a1e}
+  .back{display:inline-block;margin-top:26px;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;color:var(--muted)}
+  footer{background:var(--ink);color:#9b8f7a;text-align:center;padding:34px 28px;font-size:.78rem;letter-spacing:.08em}
+</style>
+</head>
+<body>
+<div class="ticker">Secure checkout · Powered by Square</div>
+<header><div class="nav"><a href="index.html" class="brand">Eco<b>sak</b></a>
+  <a href="index.html#shop" style="font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none">Continue shopping &rarr;</a></div></header>
+
+<section class="wrap">
+  <h1>Your Order</h1>
+  <div class="sub">Review your tote, then pay securely through Square.</div>
+
+  <div class="card">
+    <div class="line">
+      <img id="c-img" src="" alt="">
+      <div class="meta"><h2 id="c-name">Tote</h2><small id="c-qty">Qty: 1</small></div>
+      <div class="amt" id="c-amt">$0</div>
+    </div>
+    <div class="totals">
+      <div class="row"><span>Subtotal</span><span id="c-sub">$0</span></div>
+      <div class="row"><span>Shipping</span><span id="c-ship">Calculated by Square</span></div>
+      <div class="row grand"><span>Total</span><span id="c-total">$0</span></div>
+    </div>
+    <a class="pay" id="pay" href="#">Pay securely with Square</a>
+    <div class="note">You'll be taken to Square's secure checkout to complete payment with a card, Apple Pay, Google Pay, or Cash App Pay.</div>
+
+    <!-- This box is just a reminder for YOU during setup; delete it before launch -->
+    <div class="setup" id="setup">
+      <b>Setup needed:</b> this button isn't linked yet. In your Square Dashboard go to
+      <b>Online Checkout → Payment Links → Create a link → Collect a payment</b>, set the bag's name and price,
+      copy the link, and paste it into the <b>square</b> field for this item in the CATALOG below in this file.
+    </div>
+  </div>
+
+  <a class="back" href="index.html#shop">← Back to shop</a>
+</section>
+
+<footer>© 2026 ECOSAK · Payments processed securely by Square</footer>
+
+<script>
+/* Catalog with a Square payment link per bag.
+   Paste each bag's Square Payment Link URL into its "square" value.
+   Leave "" until you've created the link — the button will warn instead of breaking. */
+const CATALOG = {
+  "white-fiesta-stripe": { name:"Blanco Fiesta Tote",        price:78, img:"images/white-fiesta-stripe-tote.jpg", square:"" },
+  "red-blue-diamond":    { name:"Coral & Sky Diamond Tote",  price:82, img:"images/red-blue-diamond-tote.jpg",     square:"" },
+  "midnight-confetti":   { name:"Midnight Confetti Tote",    price:88, img:"images/midnight-confetti-tote.jpg",    square:"" },
+  "lime-green":          { name:"Lima Green Tote",           price:72, img:"images/lime-green-tote.jpg",           square:"" },
+  "lilac-wood-handle":   { name:"Lavender Wood-Handle Tote", price:95, img:"images/lilac-wood-handle-tote.jpg",    square:"" },
+  "turquoise":           { name:"Turquesa Tote",             price:78, img:"images/turquoise-tote.jpg",            square:"" }
+};
+
+const params=new URLSearchParams(location.search);
+const id=params.get('item') && CATALOG[params.get('item')] ? params.get('item') : 'white-fiesta-stripe';
+let qty=parseInt(params.get('qty'),10); if(!qty||qty<1) qty=1;
+const p=CATALOG[id];
+const sub=p.price*qty;
+
+document.getElementById('c-img').src=p.img;
+document.getElementById('c-img').alt=p.name;
+document.getElementById('c-name').textContent=p.name;
+document.getElementById('c-qty').textContent='Qty: '+qty;
+document.getElementById('c-amt').textContent='$'+sub.toFixed(2);
+document.getElementById('c-sub').textContent='$'+sub.toFixed(2);
+document.getElementById('c-total').textContent='$'+sub.toFixed(2);
+document.title='ECOSAK — Checkout · '+p.name;
+
+const pay=document.getElementById('pay');
+if(p.square){
+  pay.href=p.square;
+  document.getElementById('setup').style.display='none';
+}else{
+  pay.addEventListener('click',e=>{e.preventDefault();
+    alert('Add this bag\'s Square Payment Link in the CATALOG (square field) in checkout.html.');});
+}
+</script>
+</body>
+</html>
