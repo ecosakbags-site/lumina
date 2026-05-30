@@ -39,7 +39,7 @@ window.SHOP = {
       name: "Coral & Sky Diamond Tote",
       price: 82,
       folder: "coral-sky-diamond",
-      photos: ["photo1.png"],
+      photos: ["photo1.png","photo2.png","photo3.png","photo4.png","photo5.png","photo6.png"],
       square: "",
       blurb: "Bold coral-and-blue diamond weave with a flip-top closure.",
       description: "Coral red and sky blue interlace into a hypnotic diamond pattern on this structured carry-all. A flip-top with snap keeps everything tucked away, while the firm weave holds its shape day after day. Handwoven from recycled plastic — durable, water-resistant, and entirely one of a kind."
@@ -50,7 +50,7 @@ window.SHOP = {
       name: "Midnight Confetti Tote",
       price: 88,
       folder: "midnight-confetti",
-      photos: ["photo1.png"],
+      photos: ["photo1.png","photo2.png","photo3.png","photo4.png","photo5.png","photo6.png"],
       square: "",
       blurb: "Black weave flecked with yellow, red, pink & violet.",
       description: "A deep black base scattered with confetti-bright threads of yellow, red, pink, and purple. The generous open top makes it an easy everyday tote that still turns heads. Recycled plastic, hand-woven, and impossible to duplicate."
@@ -61,7 +61,7 @@ window.SHOP = {
       name: "Lima Green Tote",
       price: 72,
       folder: "lima-green",
-      photos: ["photo1.png"],
+      photos: ["photo1.png","photo2.png","photo3.png","photo4.png","photo5.png","photo6.png"],
       square: "",
       blurb: "Saturated lime green with a polished snap closure.",
       description: "Pure, joyful lime green in a tight handwoven weave, finished with a metal snap closure. Lightweight yet sturdy, it's the kind of color that makes an ordinary errand feel like a holiday. Woven from recycled plastic by hand."
@@ -72,7 +72,7 @@ window.SHOP = {
       name: "Lavender Wood-Handle Tote",
       price: 95,
       folder: "lavender-wood-handle",
-      photos: ["photo1.png"],
+      photos: ["photo1.png","photo2.png","photo3.png","photo4.png","photo5.png","photo6.png"],
       square: "",
       blurb: "Soft lavender weave with a sculptural natural-wood handle.",
       description: "A soft lavender body meets a smooth, curved natural-wood handle for a more elevated, structured silhouette. The standout of the collection for anyone who loves a refined, sculptural look. Handwoven from recycled plastic."
@@ -83,7 +83,7 @@ window.SHOP = {
       name: "Turquesa Tote",
       price: 78,
       folder: "turquesa",
-      photos: ["photo1.png"],
+      photos: ["photo1.png","photo2.png","photo3.png","photo4.png","photo5.png","photo6.png"],
       square: "",
       blurb: "Vivid turquoise tonal weave with a warm gold-tone snap.",
       description: "Turquoise from handle to base, woven in a subtle tonal pattern and finished with a warm gold-tone snap. It carries the easy spirit of the coast into every day. Recycled plastic, handwoven, one of a kind."
