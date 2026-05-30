@@ -47,7 +47,7 @@ window.SHOP = {
     {
       id: "blanco-fiesta",
       name: "Blanco Fiesta Tote",
-      price: 78,
+      price: 88,
       folder: "blanco-fiesta",
       photos: ["photo1.jpg","photo2.jpg","photo3.jpg","photo4.jpg","photo5.jpg","photo6.jpg"],
       square: "",
