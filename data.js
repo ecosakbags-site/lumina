@@ -50,7 +50,7 @@ window.SHOP = {
       price: 88,
       folder: "blanco-fiesta",
       photos: ["photo1.jpg","photo2.jpg","photo3.jpg","photo4.jpg","photo5.jpg","photo6.jpg"],
-      square: "",
+      square: "https://checkout.square.site/merchant/MLXSJNF3AYD67/checkout/ERS5CWSKSV43KPAVPS77XJSO",
       blurb: "Crisp white weave with a bright red, green & blue center stripe.",
       description: "The Blanco Fiesta Tote pairs a clean white handwoven body with a vivid ribbon of red, green, and blue down the center. Roomy enough for the farmers market, polished enough for lunch in town, and finished with sturdy braided handles and a snap closure. Woven entirely by hand from recycled plastic — no two are exactly alike."
     },
